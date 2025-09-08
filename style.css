@@ -28,7 +28,12 @@ form{
 
 }
 
-
+.contain{
+        display: flex
+;
+    flex-direction: column;
+    gap: 81px;
+}
 
 
 .btn {
@@ -65,7 +70,7 @@ form{
       display: flex;
       justify-content: center;
     }
-=======
+
 *{
     box-sizing: border-box;
 }
@@ -117,5 +122,10 @@ nav a:hover{
 }
 .logo:hover{
     background-color:transparent ;
+}
+
+.contain{
+    display: flex;
+    flex-direction: column;
 }
 
