@@ -130,3 +130,31 @@ nav a:hover{
     flex-direction: column;
 }
 
+
+@media (max-width:488px){
+    form{
+        flex-direction: column;
+    }
+    .input {
+      
+      
+          background: #0b1223;
+    border: 1px solid rgba(148, 163, 184, .2);
+    border-radius: 14px;
+    padding: 10px;
+    width: 100%;
+
+    }
+    .input input[type="text"] {
+      width: 100%;
+      font-size: 12px;
+      padding: 10px 12px;
+      
+      background: transparent;
+      border: none;
+      outline: none;
+      color: rgb(181, 175, 175);
+    }
+    
+}
+
