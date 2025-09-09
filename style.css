@@ -200,8 +200,10 @@ nav a:hover{
   .menu-toggle:checked + .hamburger + nav {
     display: block;
     
+
   }
 }
     
+
 
 
