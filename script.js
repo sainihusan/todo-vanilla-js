@@ -9,6 +9,7 @@ form.addEventListener('submit', function(e) {
 })
 
 
+
 function addTask(){
   const inputValue = input.value;
   const li = document.createElement('li');
@@ -77,5 +78,16 @@ const renderButtons = (li) => {
   
 // }
 
+
+
+
+
+function addTask(){
+  const inputValue = input.value;
+  const li = document.createElement('li');
+  li.textContent = inputValue;
+  ul.appendChild(li);
+  input.value=""
+}
 
 
