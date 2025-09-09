@@ -6,7 +6,7 @@
     <title>To-Do List</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="./script.js"></script>
+    
 </head>
 
 
@@ -19,8 +19,8 @@
         
     <nav>
         <ul>
-        <li><a href="#">All</a>
-        <li><a href="#">Active</a></li>
+        <li class="list"><a href="#">All</a>
+        <li class="i"><a href="#">Active</a></li>
         <li><a href="#">Complete</a></li>
         </ul>
     </nav>
@@ -30,16 +30,23 @@
         <div class="main-container">
         <h2>Make Your List</h2>
 
-        <form id="new-todo-form" class="row" autocomplete="off" >
+        <form id="todo-form" class="row" autocomplete="off" >
       <div class="input">
         <label class="sr-only" for="new-todo"></label>
-        <input id="new-todo" type="text" name="todo" placeholder="Add a new task… (press Enter)" maxlength="200" required />
+        <input id="todo-input"  type="text" name="todo" placeholder="Add a new task… (press Enter)" maxlength="200" required />
       </div>
       <button id="add-btn" type="submit" class="btn" >Add</button>
     </form>
+    <div class="div-container">
+      <ul class="todo-List" id="todoList"></ul>
+      
+    </div>
+    
     </div>
     </div>
     </div>
+
+    <script src="./script.js"></script>
    
 
 </body>
