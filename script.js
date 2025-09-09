@@ -1,16 +1,19 @@
-function addTodo(task) {
-  let todos = localStorage.getItem("todos");
+const input = document.getElementById('todo-input');
+const ul= document.getElementById('todoList');
+const button = document.getElementById('add-btn');
+const form = document.getElementById('todo-form');
 
-  if (todos) {
-    todos += "||" + task; // use "||" as separator
-  } else {
-    todos = task;
-  }
+form.addEventListener('submit', function(e) {
+  e.preventDefault()
+  addTask()
+})
 
-  localStorage.setItem("todos", todos);
+
+function addTask(){
+  const inputValue = input.value;
+  const li = document.createElement('li');
+  li.textContent = inputValue;
+  ul.appendChild(li);
+  input.value=""
 }
 
-function getTodos() {
-  let todos = localStorage.getItem("todos");
-  return todos ? todos.split("||") : [];
-}

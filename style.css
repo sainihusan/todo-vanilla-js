@@ -217,6 +217,29 @@ nav a:hover{
           gap: 104px;
     }
 }
+
+.todo-List{
+    list-style: none;
+    padding:15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+}
+li{
+    display: flex;
+    justify-content: space-between;
+     background: #0b1223;
+    border: 1px solid rgba(148, 163, 184, .2);
+    border-radius: 14px;
+    padding: 10px;
+    width: 75%;
+    color: white;
+
+}
+
+
     
 
 
