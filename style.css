@@ -201,6 +201,7 @@ nav a:hover{
   .menu-toggle:checked + .hamburger + nav {
     display: block;
     
+
   }
   .main-container{
                   border: 2px solid lightgray;
@@ -217,5 +218,6 @@ nav a:hover{
     }
 }
     
+
 
 
