@@ -2,10 +2,12 @@ const input = document.getElementById('todo-input');
 const ul= document.getElementById('todoList');
 const button = document.getElementById('add-btn');
 const form = document.getElementById('todo-form');
+const countSpan = document.getElementById('task-count');
 
 form.addEventListener('submit', function(e) {
   e.preventDefault()
   addTask()
+  updateCount()
 })
 
 
@@ -20,6 +22,7 @@ function addTask(){
 renderButtons(li)
 //   deleteTask(li)
 //   editTask(li)
+
 }
 
 const renderButtons = (li) => {
@@ -38,6 +41,7 @@ const renderButtons = (li) => {
 
     deleteButton.addEventListener('click',() => {
     li.remove();
+    updateCount();
   });
 editButton.addEventListener('click', () => {
     if (editButton.textContent == "Edit") {
@@ -60,6 +64,12 @@ editButton.addEventListener('click', () => {
     }
   });
 };
+
+
+function updateCount() {
+  const totalTasks = ul.children.length;
+  countSpan.textContent = totalTasks;
+}
  
 
 
