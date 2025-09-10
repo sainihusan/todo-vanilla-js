@@ -6,15 +6,27 @@ const countSpan = document.getElementById('task-count');
 
 
 
+
+
+
 form.addEventListener('submit', function(e) {
   e.preventDefault()
   addTask()
   updateCount()
 })
 
+const getToDoLocalStorage = () => {
+  let todos = JSON.parse(localStorage.getItem("todos"))
+}
+const addToDOLocalStorage = (task) =>{
+  return localStorage.setItem('todos', JSON.stringify(task))
 
+}
 
 function addTask(){
+
+addToDOLocalStorage(input.value);
+
   const inputValue = input.value;
   const li = document.createElement('li');
   li.textContent = inputValue;
@@ -46,6 +58,7 @@ const renderButtons = (li) => {
     li.remove();
     updateCount();
     
+    
   });
 editButton.addEventListener('click', () => {
     if (editButton.textContent == "Edit") {
@@ -66,6 +79,7 @@ editButton.addEventListener('click', () => {
       input.replaceWith(newText);
       editButton.textContent = "Edit";
      
+     
     }
   });
 };
@@ -74,7 +88,6 @@ editButton.addEventListener('click', () => {
 function updateCount() {
   countSpan.textContent = ul.children.length;
 }
-
 
 
 
