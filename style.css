@@ -351,6 +351,14 @@ nav a:hover{
   
 }
 
+.edit-input{
+      border: 1px solid #122838;
+    background: #122838;
+    color: white;
+    border-radius: 7px;
+    height: 34px;
+}
+
 
 
 

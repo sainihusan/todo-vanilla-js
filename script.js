@@ -44,6 +44,7 @@ editButton.addEventListener('click', () => {
       
       const addText = li.firstChild.textContent;
       const input = document.createElement('input');
+      input.className = "edit-input"
       input.type = "text";
       input.value = addText;
 
