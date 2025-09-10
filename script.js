@@ -34,11 +34,33 @@ const renderButtons = (li) => {
     div.appendChild(deleteButton)
     div.appendChild(editButton)
     li.appendChild(div)
+   
 
     deleteButton.addEventListener('click',() => {
     li.remove();
   });
-}
+editButton.addEventListener('click', () => {
+    if (editButton.textContent == "Edit") {
+      
+      const addText = li.firstChild.textContent;
+      const input = document.createElement('input');
+      input.type = "text";
+      input.value = addText;
+
+      li.firstChild.replaceWith  (input);
+      editButton.textContent = "Save";
+    } else {
+      
+      const input = li.firstChild;
+      const newText = document.createTextNode(input.value);
+
+      input.replaceWith(newText);
+      editButton.textContent = "Edit";
+    }
+  });
+};
+ 
+
 
 
 
