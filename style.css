@@ -71,6 +71,7 @@ form{
       justify-content: center;
     }
 
+
 *{
     box-sizing: border-box;
 }
@@ -81,8 +82,8 @@ body{
 }
 .logo{
     font-family: Arial, Helvetica, sans-serif;
-    font-size:60px;
-   
+    font-size:40px;
+    letter-spacing: 2px;
     border: 1px solid black;
     border-radius: 16px 13px;
     padding:5px;
@@ -116,6 +117,8 @@ nav a {
     
     
 }
+
+
 
 nav a:hover{
     box-shadow: 0px 0px 0px 3px #226285;
@@ -227,8 +230,9 @@ nav a:hover{
     align-items: center;
 
 }
-li{
-    display: flex;
+
+.class-list{
+  display: flex;
     justify-content: space-between;
      background: #0b1223;
     border: 1px solid rgba(148, 163, 184, .2);
@@ -238,7 +242,6 @@ li{
         align-items: center;
     width: 75%;
     color: white;
-
 }
 
 
@@ -287,26 +290,24 @@ li{
   
 
 }
+.btn-container{
+  display: flex;
+  gap: 10px;
+}
+.list{
+   display: flex;
+    justify-content: space-between;
+     background: #0b1223;
+    border: 1px solid rgba(148, 163, 184, .2);
+    border-radius: 14px;
+    padding: 10px;
 
-
-@media(max-length:488px){
-  .delete-btn{
- 
-      
-      border: 1px solid #122838;
-      background: #122838;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: .2px;
-          
-    transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
-    
+        align-items: center;
+    width: 75%;
+    color: white;
 }
 
-}
+
 
 
 

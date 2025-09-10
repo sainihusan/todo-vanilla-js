@@ -14,6 +14,7 @@ function addTask(){
   const inputValue = input.value;
   const li = document.createElement('li');
   li.textContent = inputValue;
+  li.className = "list"
   ul.appendChild(li);
   input.value=""
 renderButtons(li)
@@ -23,14 +24,25 @@ renderButtons(li)
 
 const renderButtons = (li) => {
     const div = document.createElement('div')
+    div.className = "btn-container"
     const deleteButton = document.createElement('button');
     const editButton = document.createElement('button');
     deleteButton.textContent  = 'Delete'
     editButton.textContent  = 'Edit'
+    deleteButton.className = "delete-btn"
+    editButton.className = "edit-btn"
     div.appendChild(deleteButton)
     div.appendChild(editButton)
     li.appendChild(div)
+
+    deleteButton.addEventListener('click',() => {
+    li.remove();
+  });
 }
+
+
+
+
 
 // function deleteTask(li){
 //     const deleteBtn = document.createElement('Button');
