@@ -3,42 +3,8 @@ const ul= document.getElementById('todoList');
 const button = document.getElementById('add-btn');
 const form = document.getElementById('todo-form');
 const countSpan = document.getElementById('task-count');
+let todoListValue = [];
 
-
-
-
-
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault()
-  addTask()
-  updateCount()
-})
-
-const getToDoLocalStorage = () => {
-  let todos = JSON.parse(localStorage.getItem("todos"))
-}
-const addToDOLocalStorage = (task) =>{
-  return localStorage.setItem('todos', JSON.stringify(task))
-
-}
-
-function addTask(){
-
-addToDOLocalStorage(input.value);
-
-  const inputValue = input.value;
-  const li = document.createElement('li');
-  li.textContent = inputValue;
-  li.className = "list"
-  ul.appendChild(li);
-  input.value=""
-renderButtons(li)
-//   deleteTask(li)
-//   editTask(li)
-
-
-}
 
 const renderButtons = (li) => {
     const div = document.createElement('div')
@@ -48,7 +14,7 @@ const renderButtons = (li) => {
     deleteButton.textContent  = 'Delete'
     editButton.textContent  = 'Edit'
     deleteButton.className = "delete-btn"
-    editButton.className = "edit-btn"
+    editButton.className = "edit-btn" 
     div.appendChild(deleteButton)
     div.appendChild(editButton)
     li.appendChild(div)
@@ -61,13 +27,22 @@ const renderButtons = (li) => {
     
   });
 editButton.addEventListener('click', () => {
+  let liValue;
+    for(let i=0; i<todoListValue.length; i++){
+        if(todoListValue[i] === li.id){
+          liValue = todoListValue[i]
+        }
+      }
+
     if (editButton.textContent == "Edit") {
-      
+      console.log(liValue, li.id)
       const addText = li.firstChild.textContent;
       const input = document.createElement('input');
       input.className = "edit-input"
       input.type = "text";
-      input.value = addText;
+      input.value = liValue;
+
+
 
       li.firstChild.replaceWith  (input);
       editButton.textContent = "Save";
@@ -77,6 +52,18 @@ editButton.addEventListener('click', () => {
       const newText = document.createTextNode(input.value);
 
       input.replaceWith(newText);
+      let newArray = []
+      for(let i=0; i<todoListValue.length; i++){
+        if(todoListValue[i] === liValue){
+          newArray.push(input.value)
+        } else{
+
+          newArray.push(todoListValue[i])
+        }
+      }
+
+      addToDOLocalStorage(newArray)
+      
       editButton.textContent = "Edit";
      
      
@@ -85,60 +72,66 @@ editButton.addEventListener('click', () => {
 };
 
 
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault()
+  addTask()
+  updateCount()
+})
+
+
+const getToDoLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("todos"))|| [];
+}
+const addToDOLocalStorage = (task) =>{
+  return localStorage.setItem('todos', JSON.stringify(task))
+}
+
+
+const showTodoList =() => {
+  todoListValue=getToDoLocalStorage();
+  todoListValue.forEach((curTodo) => {
+    
+    const li = document.createElement('li');
+  li.textContent = curTodo;
+  
+  li.className = "list"
+  li.setAttribute('id', curTodo)
+  ul.appendChild(li);
+  renderButtons(li);
+  input.value=""
+  
+    
+  });
+
+};
+let TaskId = 0;
+
+function addTask(){
+  if(input.value.length !== 0){
+    const inputValue = input.value.trim();
+    todoListValue.push(inputValue);
+    const li = document.createElement('li');
+    TaskId++;
+    li.setAttribute('id',`task-${TaskId}`);
+    li.textContent = inputValue;
+    li.setAttribute('id', inputValue)
+    li.className = "list"
+    ul.appendChild(li);
+    renderButtons(li);
+    input.value=""
+    addToDOLocalStorage(todoListValue)
+  }
+}
+  
+
 function updateCount() {
   countSpan.textContent = ul.children.length;
 }
 
+showTodoList();
 
 
-
-
-
-// function deleteTask(li){
-//     const deleteBtn = document.createElement('Button');
-//     deleteBtn.textContent = "Delete"
-//     deleteBtn.className = "delete-btn";
-//     li.appendChild(deleteBtn);
-//     deleteBtn.onclick = function(){
-//         li.remove();
-
-//     }
-    
-// }
-
-// function editTask(li) {
-//   const editBtn = document.createElement('button');
-//   editBtn.textContent = "Edit";
-//   editBtn.className = "edit-btn";
-//   li.appendChild(editBtn);
-
-//   editBtn.onclick = function () {
-//     const span = li.firstChild; 
-//     const input = document.createElement('input');
-//     input.type = "text";
-//     input.value = span.textContent;
-
-//    li.insertBefore(input, span);
-//     li.removeChild(span);
-//     editBtn.textContent = "Save";
-
-//     // Save click
-//     editBtn.onclick = function () {
-//       const newSpan = document.createElement('span');
-//       newSpan.textContent = input.value;
-//       li.insertBefore(newSpan, input);
-//       li.removeChild(input);
-//       editBtn.textContent = "Edit";
-
-//       // Restore original edit behavior
-//       editBtn.onclick = editBtnOriginalClick;
-//     };
-//   };
-
-//   // Store original click handler to restore later
-//    editBtnOriginalClick = editBtn.onclick;
-  
-// }
 
 
 
