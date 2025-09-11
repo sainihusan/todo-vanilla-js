@@ -100,6 +100,7 @@ const showTodoList =() => {
   ul.appendChild(li);
   renderButtons(li);
   input.value=""
+  updateCount();
   
     
   });
@@ -130,6 +131,9 @@ function updateCount() {
 }
 
 showTodoList();
+
+ 
+
 
 
 
