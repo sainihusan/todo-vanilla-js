@@ -320,6 +320,30 @@ nav a:hover{
     width: 75%;
     color: white;
 }
+.clear-container{
+  display: flex;
+  justify-content: center;
+}
+.clear-btn{
+  border: 1px solid #122838;
+      background: #122838;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 900;
+      letter-spacing: .2px;
+      transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
+      width: 30%;
+}
+.clear-btn:hover {     
+  box-shadow: 0px 0px 0 3px #226285;
+  
+
+}
+.clear-text{
+  font-size: 17px;
+}
 
 @media (max-width: 680px) {
   .list,
@@ -329,6 +353,7 @@ nav a:hover{
     width: 95%;              
     gap: 10px;
   }
+  
 
   .btn-container {
     width: 100%;
@@ -347,6 +372,9 @@ nav a:hover{
    
     text-align: center;
   }
+  .clear-btn{
+           width: 44%;
+  }
 
   
 }
@@ -358,6 +386,8 @@ nav a:hover{
     border-radius: 7px;
     height: 34px;
 }
+
+
 
 
 

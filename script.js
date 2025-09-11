@@ -3,6 +3,15 @@ const ul= document.getElementById('todoList');
 const button = document.getElementById('add-btn');
 const form = document.getElementById('todo-form');
 const countSpan = document.getElementById('task-count');
+const clearAllBtn = document.getElementById('clear-all-btn');
+
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
 let todoListValue = [];
 
 
@@ -29,8 +38,8 @@ const renderButtons = (li) => {
 editButton.addEventListener('click', () => {
   let liValue;
     for(let i=0; i<todoListValue.length; i++){
-        if(todoListValue[i] === li.id){
-          liValue = todoListValue[i]
+        if(todoListValue[i].id === li.id){
+          liValue = todoListValue[i].task
         }
       }
 
@@ -44,7 +53,7 @@ editButton.addEventListener('click', () => {
 
 
 
-      li.firstChild.replaceWith  (input);
+      li.firstChild.replaceWith(input);
       editButton.textContent = "Save";
     } else {
       
@@ -54,8 +63,8 @@ editButton.addEventListener('click', () => {
       input.replaceWith(newText);
       let newArray = []
       for(let i=0; i<todoListValue.length; i++){
-        if(todoListValue[i] === liValue){
-          newArray.push(input.value)
+        if(todoListValue[i].id === li.id){
+          newArray.push({id:todoListValue[i].id ,task: input.value})
         } else{
 
           newArray.push(todoListValue[i])
@@ -93,29 +102,32 @@ const showTodoList =() => {
   todoListValue.forEach((curTodo) => {
     
     const li = document.createElement('li');
-  li.textContent = curTodo;
+  li.textContent = curTodo.task;
   
   li.className = "list"
-  li.setAttribute('id', curTodo)
+  li.setAttribute('id', curTodo.id)
   ul.appendChild(li);
   renderButtons(li);
   input.value=""
+
+  updateCount();
   
     
   });
 
 };
-let TaskId = 0;
 
 function addTask(){
   if(input.value.length !== 0){
+
+    const uuid = guidGenerator()
     const inputValue = input.value.trim();
-    todoListValue.push(inputValue);
+    const newTodo = {id: uuid, task: inputValue}
+    todoListValue.push(newTodo);
+
     const li = document.createElement('li');
-    TaskId++;
-    li.setAttribute('id',`task-${TaskId}`);
+    li.setAttribute('id', newTodo.id);
     li.textContent = inputValue;
-    li.setAttribute('id', inputValue)
     li.className = "list"
     ul.appendChild(li);
     renderButtons(li);
@@ -129,10 +141,24 @@ function updateCount() {
   countSpan.textContent = ul.children.length;
 }
 
+
+function clearAllTasks() {
+  ul.innerHTML = "";
+
+  todoListValue = [];
+
+  localStorage.setItem("todos", JSON.stringify([]));
+
+  updateCount();
+}
+clearAllBtn.addEventListener("click", clearAllTasks);
+
 showTodoList();
 
 
-
+function initEventListners() {
+  
+}
 
 
 
