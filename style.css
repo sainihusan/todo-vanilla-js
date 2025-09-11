@@ -387,9 +387,19 @@ nav a:hover{
     height: 34px;
 }
 
+#error-display{
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
 
+/* #error-dispay .show {
+  display: block;
+}
 
-
+#error-display .hide {
+  display: none;
+} */
 
 
 
