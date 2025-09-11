@@ -108,6 +108,7 @@ const showTodoList =() => {
 let TaskId = 0;
 
 function addTask(){
+  console.log('clicked')
   if(input.value.length !== 0){
     const inputValue = input.value.trim();
     todoListValue.push(inputValue);
