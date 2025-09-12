@@ -98,7 +98,8 @@ form {
   padding: 10px 14px;
   border-radius: 12px;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 500;
+  font-size: 17px;
   letter-spacing: 0.2px;
   transition: transform 0.04s ease, box-shadow 0.2s ease, border-color 0.2s;
 }
@@ -188,6 +189,7 @@ form {
   border-radius: 7px;
   height: 34px;
   padding: 6px 10px;
+  width: 40%;
 }
 
 /* ========== Error Display ========== */
@@ -233,10 +235,11 @@ form {
   cursor: pointer;
 }
 
+
 /* ========== Responsive Design ========== */
 
 /* Tablets */
-@media (max-width: 680px) {
+@media (max-width: 780px) {
   form {
     flex-direction: column;
   }
@@ -298,6 +301,59 @@ form {
   display: flex;
   justify-content: center;
 }
+.btn-container {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+@media(max-width:615px){
+  .list,
+  .class-list {
+    width: 113%;               /* Consistent width for all items */
+    font-size: 17px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .btn-container {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Clear button */
+  .clear-btn {
+    width: 60%;              /* More mobile-friendly */
+    margin-top: 10px;
+  }
+
+  /* Navigation list */
+  nav ul {
+    width: 100%;
+    
+    gap: 10px;
+    padding: 10px 0;
+    align-items: center;
+  }
+
+  /* Main container width */
+  .main-container {
+    width: 95%;
+  }
+
+  .contain {
+    gap: 4px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
 }
     
   
