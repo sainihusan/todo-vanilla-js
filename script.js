@@ -164,6 +164,7 @@ function applyFilter(filter) {
     filtered = todoItems.filter(todo => todo.completed);
   }
 
+
   filtered.forEach((curTodo) => {
     const li = document.createElement('li');
     li.textContent = curTodo.task;
@@ -172,6 +173,7 @@ function applyFilter(filter) {
     renderButtons(li);
     ul.appendChild(li);
   });
+
 
   taskCounter();
 }
