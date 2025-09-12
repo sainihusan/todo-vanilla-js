@@ -157,22 +157,7 @@ clearAllBtn.addEventListener("click", clearTasks);
 
 
 
-const showTodoList =() => {
-  todoListValue=getToDoLocalStorage();
-  todoListValue.forEach((curTodo) => {
-    
-    const li = document.createElement('li');
-  li.textContent = curTodo;
-  
-  li.className = "list"
-  li.setAttribute('id', curTodo)
-  ul.appendChild(li);
-  renderButtons(li);
-  input.value=""
-  updateCount();
-  
-    
-  });
+
 
 
 showTodoList();
