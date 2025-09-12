@@ -1,411 +1,358 @@
+/* ========== Base Reset ========== */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f4f8;
+  color: #333;
+}
+
+/* ========== Header & Navigation ========== */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 32px;
+  border-bottom: 3px solid black;
+  background-color: #122838;
+  color: white;
+  width: 100%;
+}
+
+.logo {
+  font-size: 40px;
+  letter-spacing: 2px;
+  border: 3px solid white;
+  border-radius: 16px 13px;
+  padding: 5px 12px;
+  background-color: #122838;
+  color: white;
+  transition: box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  box-shadow: 0px 0px 0px 5px #226285;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 9px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #122838;
+  border: 1px solid #226285;
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: box-shadow 0.2s ease;
+}
+
+nav a:hover {
+  box-shadow: 1px 0px 0px 3px #226285;
+}
+
+/* ========== Form ========== */
+form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
 .input {
-      
-      
-          background: #0b1223;
-    border: 1px solid rgba(148, 163, 184, .2);
-    border-radius: 14px;
-    padding: 10px;
-    width: 63%;
-
-    }
-
-    .input input[type="text"] {
-      width: 100%;
-      font-size: 16px;
-      padding: 10px 12px;
-      
-      background: transparent;
-      border: none;
-      outline: none;
-      color: rgb(181, 175, 175);
-    }
-
-form{
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-
+  background: #0b1223;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 14px;
+  padding: 10px;
+  width: 63%;
 }
 
-.contain{
-        display: flex
-;
-    flex-direction: column;
-    gap: 81px;
+.input input[type="text"] {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgb(181, 175, 175);
 }
 
-
-.btn {
-      
-      border: 1px solid #122838;
-      background: #122838;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: .2px;
-      transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
-      
-    }
-    .btn:hover {     
-  box-shadow: 0px 0px 0 3px #226285;
-  
-
-}
-
-    .main-container{
-          border: 2px solid lightgray;
-    display: flex
-;
-    flex-direction: column;
-    text-align: center;
-    width: 52%;
-    padding: 28px;
-    border-radius: 34px;
-    }
-
-    .container{
-      display: flex;
-      justify-content: center;
-    }
-
-
-*{
-    box-sizing: border-box;
-}
-body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-.logo{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:40px;
-    letter-spacing: 2px;
-    border: 1px solid black;
-    border-radius: 16px 13px;
-    padding:5px;
-    background-color: #122838;
-    color: white;
-}
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 13px 32px;
-    border-bottom: 3px solid black;
-    width:100%;
-}
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-   
-
-}
-nav a {
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: white;
-    background-color: #122838;
-    border:1px solid ;
-    border-radius:16px 13px;
-    padding:10px;
-    
-    
-    
-    
-}
-
-/* display: flex;
-    justify-content: space-between;
-     background: #0b1223;
-    border: 1px solid rgba(148, 163, 184, .2);
-    border-radius: 14px;
-    padding: 10px;
-
-        align-items: center;
-    width: 75%;
-    color: white; */
-
-
-
-nav a:hover{
-    box-shadow: 1px 0px 0px 3px #226285;
-}
-.logo:hover{
-    box-shadow: 0px 0px 0px 3px #226285;
-
-
-}
-
-
-
-.contain{
-    display: flex;
-    flex-direction: column;
-}
-.menu-toggle {
-  display: none;
-}
-
-.hamburger {
-  display: none;
-  font-size: 32px;
-  cursor: pointer;
-  user-select: none;
-}
-
-
-@media (max-width:680px){
-    form{
-        flex-direction: column;
-    }
-    .input {
-      
-      
-          background: #0b1223;
-    border: 1px solid rgba(148, 163, 184, .2);
-    border-radius: 14px;
-    padding: 10px;
-    width: 100%;
-
-    }
-    .input input[type="text"] {
-      width: 100%;
-              font-size: 17px;
-      padding: 10px 12px;
-      
-      background: transparent;
-      border: none;
-      outline: none;
-      color: rgb(181, 175, 175);
-    }
-    .hamburger {
-    display: block;
-  }
-  .logo{
-    font-size: 33px;
-  }
-
-  nav {
-                position: absolute;
-        top: 62%;
-        left: -44px;
-        right: 0;
-        background: white;
-        border-top: 1px solid #000;
-        display: none;
-        padding: 16px 32px;
-        background-color: transparent;
-        text-align: center;
-  }
-
-  nav ul {
-            flex-direction: column;
-        gap: 24px;
-        
-
-        position: relative;
-        top: -15px;
-  }
-
-  /* Toggle menu when checkbox is checked */
-  .menu-toggle:checked + .hamburger + nav {
-    display: block;
-    
-
-  }
-  .main-container{
-                  border: 2px solid lightgray;
-        display: flex
-;
-        flex-direction: column;
-        text-align: center;
-        padding: 28px;
-        border-radius: 34px;
-        width: 86%;
-    }
-    .contain{
-          gap: 104px;
-    }
-}
-
-.todo-List{
-    list-style: none;
-    padding:15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-
-}
-
-.class-list{
-  display: flex;
-    justify-content: space-between;
-     background: #0b1223;
-    border: 1px solid rgba(148, 163, 184, .2);
-    border-radius: 14px;
-    padding: 10px;
-
-        align-items: center;
-    width: 75%;
-    color: white;
-}
-
-
-.delete-btn{
- 
-      
-      border: 1px solid #122838;
-      background: #122838;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: .2px;
-          
-    transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
-
-
-
-    
-}
-      
-    
-    .delete-btn:hover {     
-  box-shadow: 0px 0px 0 3px #226285;
-  
-
-}
-.edit-btn{
- 
-      
-      border: 1px solid #122838;
-      background: #122838;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: .2px;
-      transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
-}
-      
-    
-    .edit-btn:hover {     
-  box-shadow: 0px 0px 0 3px #226285;
-  
-
-}
-.btn-container{
-  display: flex;
-  gap: 10px;
-}
-.list{
-   display: flex;
-    justify-content: space-between;
-     background: #0b1223;
-    border: 1px solid rgba(148, 163, 184, .2);
-    border-radius: 14px;
-    padding: 10px;
-
-        align-items: center;
-    width: 75%;
-    color: white;
-}
-.clear-container{
-  display: flex;
-  justify-content: center;
-}
-.clear-btn{
+/* ========== Buttons ========== */
+.btn,
+.clear-btn,
+.delete-btn,
+.edit-btn {
   border: 1px solid #122838;
-      background: #122838;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: .2px;
-      transition: transform .04s ease, box-shadow .2s ease, border-color .2s;
-      width: 30%;
+  background: #122838;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  transition: transform 0.04s ease, box-shadow 0.2s ease, border-color 0.2s;
 }
-.clear-btn:hover {     
-  box-shadow: 0px 0px 0 3px #226285;
-  
 
+.btn:hover,
+.clear-btn:hover,
+.delete-btn:hover,
+.edit-btn:hover {
+  box-shadow: 0px 0px 0 3px #226285;
 }
-.clear-text{
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* ========== Layout Containers ========== */
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  border: 2px solid #122838;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 52%;
+  padding: 28px;
+  border-radius: 34px;
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contain {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+/* ========== List Styles ========== */
+.todo-List {
+  list-style: none;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+  max-height: 300px;           /* Set desired scroll height */
+  overflow-y: auto;            /* Enable vertical scrolling */
+  scroll-behavior: smooth;
+}
+
+.list,
+.class-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0b1223;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 14px;
+  padding: 10px;
+  width: 75%;
+  color: white;
+}
+
+/* ========== Clear Section ========== */
+.clear-container {
+  display: flex;
+  justify-content: center;
+}
+
+.clear-btn {
+  width: 30%;
+}
+
+.clear-text {
   font-size: 17px;
 }
 
-@media (max-width: 680px) {
-  .list,
-  .class-list {
-    flex-direction: column;   
-    
-    width: 95%;              
-    gap: 10px;
-  }
-  
-
-  .btn-container {
-    width: 100%;
-    justify-content: center; 
-  }
-
-  
+/* ========== Edit Input ========== */
+.edit-input {
+  border: 1px solid #122838;
+  background: #122838;
+  color: white;
+  border-radius: 7px;
+  height: 34px;
+  padding: 6px 10px;
 }
 
-/* 📱 Small Mobile (max 400px) */
-@media (max-width: 400px) {
-  .list,
-  .class-list {
-    width: 100%;
-    font-size: 17px;
-   
-    text-align: center;
-  }
-  .clear-btn{
-           width: 44%;
-  }
-
-  
-}
-
-.edit-input{
-      border: 1px solid #122838;
-    background: #122838;
-    color: white;
-    border-radius: 7px;
-    height: 34px;
-}
-
-#error-display{
+/* ========== Error Display ========== */
+#error-display {
   background-color: red;
   color: white;
   padding: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+.filter-list{
+  display: flex;
+  justify-content: center;
+}
+.task-text {
+ 
+    padding: 0 10px;
+    word-break: break-all;
+   
+    width: 179%;
+}
+.filter-nav {
+  display: flex;
+  justify-content: center;
 }
 
-/* #error-dispay .show {
-  display: block;
-}
-
-#error-display .hide {
+/* Mobile dropdown filter (hidden by default) */
+.dropdown-filter {
   display: none;
-} */
+  justify-content: center;
+  margin-top: 10px;
+}
 
+#filter-dropdown {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #122838;
+  background-color: #122838;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+}
 
+/* ========== Responsive Design ========== */
 
+/* Tablets */
+@media (max-width: 680px) {
+  form {
+    flex-direction: column;
+  }
 
+  .input {
+    width: 100%;
+  }
 
+  
 
+  nav {
+           display: flex
+;
+        text-align: center;
+        
+        justify-content: center;
+    }
+    nav ul {
+    width: 150%;
+    gap: 5px;
+    padding: 10px;
+   
+  }
 
+  
+
+  .main-container {
+    width: 51%;
+  }
+
+  .contain {
+    gap: 104px;
+  }
+
+  .list,
+  .class-list {
+    
+    width: 76%;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .btn-container {
+    width: 100%;
+    justify-content: end;
+  }
+
+  .logo {
+    font-size: 33px;
+  }
+  .filter-nav {
+    display: none; /* Hide nav on small screens */
+  }
+
+  .dropdown-filter {
+    display: flex; /* Show dropdown on small screens */
+  }
+  .filter-list{
+  display: flex;
+  justify-content: center;
+}
+}
     
   
+
+  
+
+/* Small Mobile */
+@media (max-width: 400px) {
+  /* General task list styling */
+  .list,
+  .class-list {
+    width: 113%;               /* Consistent width for all items */
+    font-size: 17px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .btn-container {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Clear button */
+  .clear-btn {
+    width: 60%;              /* More mobile-friendly */
+    margin-top: 10px;
+  }
+
+  /* Navigation list */
+  nav ul {
+    width: 100%;
+    
+    gap: 10px;
+    padding: 10px 0;
+    align-items: center;
+  }
+
+  /* Main container width */
+  .main-container {
+    width: 95%;
+  }
+
+  .contain {
+    gap: 4px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+}
+
+
+
+

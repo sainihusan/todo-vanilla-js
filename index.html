@@ -14,16 +14,9 @@
     <div class="contain">
          <header>
         <div class="logo">TO-DO LIST</div>
-        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-  <label for="menu-toggle" class="hamburger">&#9776;</label>
         
-    <nav>
-        <ul>
-        <li class="list1"><a href="#" id="filter-all">All</a></li>
-          <li class="list1"><a href="#" id="filter-active">Active</a></li>
-          <li class="list1"><a href="#" id="filter-completed">Completed</a></li>
-        </ul>
-    </nav>
+        
+    
     </header>
 
     <div class="container">
@@ -37,13 +30,30 @@
       </div>
       <button id="add-btn" type="submit" class="btn" >Add</button>
     </form>
+    <div class="filter-list">
+      <nav class="filter-nav">
+        <ul>
+        <li class="list1"><a href="#" id="filter-all">All</a></li>
+          <li class="list1"><a href="#" id="filter-active">Active</a></li>
+          <li class="list1"><a href="#" id="filter-completed">Completed</a></li>
+        </ul>
+    </nav>
+    <div class="dropdown-filter">
+  <select id="filter-dropdown">
+    <option value="all">All</option>
+    <option value="active">Active</option>
+    <option value="completed">Completed</option>
+  </select>
+</div>
+    </div>
+    
     <div class="div-container">
       <ul class="todo-List" id="todoList"></ul>
     </div>
     <span id="error-display" style="visibility: hidden;"></span>
     <p>Total Tasks: <span id="task-count">0</span></p>
     <div class="clear-container">
-      <button id="clear-all-btn" class="clear-btn"><span class="clear-text">clear all</span></button>
+      <button id="clear-all-btn" class="clear-btn"><span class="clear-text">Clear All</span></button>
     </div>
     
     </div>
