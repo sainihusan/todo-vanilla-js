@@ -33,15 +33,18 @@
         <form id="todo-form" class="row" autocomplete="off" >
       <div class="input">
         <!-- <label class="sr-only" ></label> -->
-        <input id="todo-input"  type="text" name="todo" placeholder="Add a new task… (press Enter)" maxlength="200" required />
+        <input id="todo-input"  type="text" name="todo" placeholder="Add a new task… (press Enter)" maxlength="200" />
       </div>
       <button id="add-btn" type="submit" class="btn" >Add</button>
     </form>
     <div class="div-container">
       <ul class="todo-List" id="todoList"></ul>
-
     </div>
+    <span id="error-display" style="visibility: hidden;"></span>
     <p>Total Tasks: <span id="task-count">0</span></p>
+    <div class="clear-container">
+      <button id="clear-all-btn" class="clear-btn"><span class="clear-text">clear all</span></button>
+    </div>
     
     </div>
     </div>
