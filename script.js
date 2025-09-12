@@ -100,36 +100,49 @@ const renderButtons = (li) => {
   editButton.addEventListener('click', () => handleEdit(li, editButton));
 };
 
-// Handle editing tasks
 const handleEdit = (li, editButton) => {
-  const taskSpan = li.querySelector('.task-text');
-  const todo = todoItems.find(item => item.id === li.id);
+  const taskNode = li.childNodes[1]; // This is either the <span> or <input> where the task text lives
+  const todoId = li.id;              // Every task <li> has a unique ID
 
-  if (editButton.textContent === "Edit") {
-    const input = document.createElement('input');
-    input.className = "edit-input";
+  // Find the actual task (todo object) from the todoItems array
+  let todo;
+  for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].id === todoId) {
+      todo = todoItems[i];          // Found the task by matching IDs
+      break;
+    }
+  }
+
+  // CASE 1: The task is shown as text inside a <span>
+  if (taskNode.tagName === "SPAN") {
+    const input = document.createElement("input");  // Create an input box
     input.type = "text";
-    input.value = todo.task;
+    input.className = "edit-input";                 // Apply class for styling
+    input.value = todo.task;                        // Fill it with the existing task
 
-    taskSpan.replaceWith(input);
-    editButton.textContent = "Save";
-  } else {
-    const input = li.querySelector('.edit-input');
-    const newText = input.value.trim();
+    li.replaceChild(input, taskNode);               // Replace the <span> with <input>
+    editButton.textContent = "Save";                // Change button text to Save
+  }
+  // CASE 2: The task is currently in an <input> and we want to save it
+  else if (taskNode.tagName === "INPUT") {
+    const newValue = taskNode.value.trim();         // Get updated value from input
 
-    const newSpan = document.createElement('span');
-    newSpan.className = 'task-text';
-    newSpan.textContent = newText;
+    const span = document.createElement("span");    // Create a new <span> to show text again
+    span.className = "task-text";
+    span.textContent = newValue;
 
-    input.replaceWith(newSpan);
+    li.replaceChild(span, taskNode);                // Replace <input> with <span>
 
-    // Update the task in todoItems
-    todoItems = todoItems.map(item =>
-      item.id === li.id ? { ...item, task: newText } : item
-    );
+    // Update the corresponding todo item in the array
+    for (let i = 0; i < todoItems.length; i++) {
+      if (todoItems[i].id === todoId) {
+        todoItems[i].task = newValue;               // Update the text in memory
+        break;
+      }
+    }
 
-    addTodos(todoItems);
-    editButton.textContent = "Edit";
+    addTodos(todoItems);                            // Save the updated array to localStorage
+    editButton.textContent = "Edit";                // Change button text back to Edit
   }
 };
 
