@@ -1,199 +1,189 @@
+// Get references to DOM elements
 const input = document.getElementById('todo-input');
-const ul= document.getElementById('todoList');
-const button = document.getElementById('add-btn');
+const ul = document.getElementById('todoList');
 const form = document.getElementById('todo-form');
 const countdisplay = document.getElementById('task-count');
 const clearAllBtn = document.getElementById('clear-all-btn');
-const errorDisplay = document.getElementById('error-display')
 
 let todoItems = [];
+let currentFilter = "all"; // Default filter
 
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault()
-  addTask()
-  taskCounter()
-})
-
-// function to add new task 
-function addTask(){
-  if(input.value.length !== 0){
-
-    const uuid = guidGenerator()
-    const inputValue = input.value.trim();
-    const newTodo = {id: uuid, task: inputValue}
-    todoItems.push(newTodo);
-
-    const li = document.createElement('li');
-    li.setAttribute('id', newTodo.id);
-    li.textContent = inputValue;
-    li.className = "list"
-    ul.appendChild(li);
-    renderButtons(li);
-    input.value=""
-    addTodos(todoItems)
-  }
-  else{
-
-  }
+// Load todos from localStorage
+function getTodos() {
+  return JSON.parse(localStorage.getItem("todos")) || [];
 }
 
-// task ids
+// Save todos to localStorage
+function addTodos(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// Generate unique IDs for tasks
 function guidGenerator() {
-    var S4 = function() {
-       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+  function S4() {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  }
+  return (
+    S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4()
+  );
 }
 
+// Add new task
+function addTask() {
+  const taskText = input.value.trim();
+  if (taskText.length === 0) return;
 
-  // saving to localstorage
-  const getTodos = () => {
-    return JSON.parse(localStorage.getItem("todos"))|| [];
-}
-  const addTodos = (task) =>{
-     return localStorage.setItem('todos', JSON.stringify(task))
-}
+  const newTask = {
+    id: guidGenerator(),
+    task: taskText,
+    completed: false
+  };
 
-
-// showtodolist
-const showTodoList =() => {
-  todoItems=getTodos();
-  todoItems.forEach((curTodo) => {
-    
-    const li = document.createElement('li');
-  li.textContent = curTodo.task;
-  
-  li.className = "list"
-  li.setAttribute('id', curTodo.id)
-  ul.appendChild(li);
-  renderButtons(li);
-  input.value=""
-
+  todoItems.push(newTask);
+  addTodos(todoItems);
+  input.value = '';
+  applyFilter(currentFilter);
   taskCounter();
+}
+
+// Render buttons and create the list item UI for a task
+function renderButtons(li) {
+  const todoId = li.id;
+  const todo = todoItems.find(item => item.id === todoId);
+
+  // Checkbox for completed status
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = todo.completed || false;
+  checkbox.addEventListener('change', () => {
+    todo.completed = checkbox.checked;
+    addTodos(todoItems);
+    taskCounter();
+    applyFilter(currentFilter);
   });
-};
 
+  // Insert checkbox at the start of li
+  li.insertBefore(checkbox, li.firstChild);
 
-// renderbuttons
+  // Buttons container
+  const btnContainer = document.createElement('div');
+  btnContainer.className = 'btn-container';
 
-const renderButtons = (li) => {
-    const div = document.createElement('div')
-    div.className = "btn-container"
-    const deleteButton = document.createElement('button');
-    const editButton = document.createElement('button');
-    deleteButton.textContent  = 'Delete'
-    editButton.textContent  = 'Edit'
-    deleteButton.className = "delete-btn"
-    editButton.className = "edit-btn" 
-    div.appendChild(deleteButton)
-    div.appendChild(editButton)
-    li.appendChild(div)
-
-   
-// deletebutton
-    deleteButton.addEventListener('click',() => {
-    li.remove();
-    taskCounter();    
+  // Delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.addEventListener('click', () => {
+    todoItems = todoItems.filter(item => item.id !== todo.id);
+    addTodos(todoItems);
+    applyFilter(currentFilter);
+    taskCounter();
   });
-  editButton.addEventListener('click', () => handleEdit(li, editButton)); 
-};
 
-// handling edit
-const handleEdit = (li, editButton) => {
-    let taskText;
-    for (let i = 0; i < todoItems.length; i++) {
-        if (todoItems[i].id === li.id) {
-            taskText = todoItems[i].task;
-        }
-    }
+  // Edit button
+  const editBtn = document.createElement('button');
+  editBtn.className = 'edit-btn';
+  editBtn.textContent = 'Edit';
+  editBtn.addEventListener('click', () => handleEdit(li, todo, editBtn));
 
-    if (editButton.textContent === "Edit") {
-        
-        const input = document.createElement('input');
-        input.className = "edit-input";
-        input.type = "text";
-        input.value = taskText;
-        li.firstChild.replaceWith(input);
-        editButton.textContent = "Save";
+  btnContainer.appendChild(deleteBtn);
+  btnContainer.appendChild(editBtn);
+  li.appendChild(btnContainer);
+}
+
+// Handle editing task text
+function handleEdit(li, todo, editBtn) {
+  if (editBtn.textContent === 'Edit') {
+    // Change to input field
+    const inputEdit = document.createElement('input');
+    inputEdit.type = 'text';
+    inputEdit.value = todo.task;
+    inputEdit.className = 'edit-input';
+    li.replaceChild(inputEdit, li.childNodes[1]); // Replace text node with input
+    editBtn.textContent = 'Save';
+  } else {
+    // Save edited value
+    const inputEdit = li.querySelector('.edit-input');
+    const newTask = inputEdit.value.trim();
+    if (newTask.length > 0) {
+      todo.task = newTask;
+      addTodos(todoItems);
+      const textNode = document.createTextNode(todo.task);
+      li.replaceChild(textNode, inputEdit);
+      editBtn.textContent = 'Edit';
     } else {
-        
-        const input = li.firstChild;
-        const newText = document.createTextNode(input.value);
-        input.replaceWith(newText);
-
-        
-        let newArray = [];
-        for (let i = 0; i < todoItems.length; i++) {
-            if (todoItems[i].id === li.id) {
-                newArray.push({ id: todoItems[i].id, task: input.value });
-            } else {
-                newArray.push(todoItems[i]);
-            }
-        }
-        addTodos(newArray);
-        editButton.textContent = "Edit";
+      alert('Task cannot be empty.');
     }
-};
+  }
+}
 
-  
-// taskcounter
+// Update task counter display
 function taskCounter() {
   countdisplay.textContent = ul.children.length;
 }
 
-
-// cleartasks
+// Clear all tasks
 function clearTasks() {
-  ul.innerHTML = "";
-
   todoItems = [];
+  addTodos(todoItems);
+  ul.innerHTML = '';
+  taskCounter();
+}
 
-  localStorage.setItem("todos", JSON.stringify([]));
+// Apply filter and render filtered tasks
+function applyFilter(filter) {
+  currentFilter = filter;
+  localStorage.setItem("currentFilter", filter);
+  ul.innerHTML = '';
+
+  let filteredTasks = [];
+
+  if (filter === 'all') {
+    filteredTasks = todoItems;
+  } else if (filter === 'active') {
+    filteredTasks = todoItems.filter(todo => !todo.completed);
+  } else if (filter === 'completed') {
+    filteredTasks = todoItems.filter(todo => todo.completed);
+  }
+
+  filteredTasks.forEach(todo => {
+    const li = document.createElement('li');
+    li.className = 'list';
+    li.id = todo.id;
+    li.appendChild(document.createTextNode(todo.task));
+    ul.appendChild(li);
+    renderButtons(li);
+  });
 
   taskCounter();
 }
-clearAllBtn.addEventListener("click", clearTasks);
 
+// Event listeners for form and buttons
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  addTask();
+});
 
+clearAllBtn.addEventListener('click', clearTasks);
 
-const showTodoList =() => {
-  todoListValue=getToDoLocalStorage();
-  todoListValue.forEach((curTodo) => {
-    
-    const li = document.createElement('li');
-  li.textContent = curTodo;
-  
-  li.className = "list"
-  li.setAttribute('id', curTodo)
-  ul.appendChild(li);
-  renderButtons(li);
-  input.value=""
-  updateCount();
-  
-    
-  });
+document.getElementById("filter-all").addEventListener('click', e => {
+  e.preventDefault();
+  applyFilter('all');
+});
 
+document.getElementById("filter-active").addEventListener('click', e => {
+  e.preventDefault();
+  applyFilter('active');
+});
 
-showTodoList();
+document.getElementById("filter-completed").addEventListener('click', e => {
+  e.preventDefault();
+  applyFilter('completed');
+});
 
-
-function showError(text) {
-  // errorDisplay.classList.remove('hide')
-  // errorDisplay.classList.add('show')
-  errorDisplay.style.visibility = 'visible'
-}
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
+// Initialize on page load
+window.addEventListener('load', () => {
+  todoItems = getTodos();
+  const savedFilter = localStorage.getItem("currentFilter") || "all";
+  applyFilter(savedFilter);
+});
